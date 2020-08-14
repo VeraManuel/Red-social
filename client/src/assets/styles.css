@@ -1,0 +1,14 @@
+/*header*/
+.navigation {
+    padding: 0px !important;
+}
+
+.navigation .navbar {
+    border-radius: 0px !important;
+    background: #2c3e50;
+    border: none;
+}
+
+.navigation .navbar * {
+    color: #fff !important;
+}
