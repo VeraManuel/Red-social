@@ -9,8 +9,6 @@ var md_upload = multiparty({ uploadDir: './uploads/users' });
 
 var api = express.Router();
 
-api.get('/home', UserController.home);
-api.get('/test', md_auth.ensureAuth, UserController.test);
 api.post('/registrate', UserController.saveUser);
 api.post('/login', UserController.login);
 api.get('/user/:id', md_auth.ensureAuth, UserController.getUser);

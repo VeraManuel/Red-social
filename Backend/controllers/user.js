@@ -11,18 +11,6 @@ var fs = require('fs');
 var path = require('path');
 
 
-function home(req, res){
-    res.status(200).send({
-        message: 'extension home por nodeJS online'
-    });
-}
-
-function test(req, res){
-    res.status(200).send({
-        message: 'servidor de prueba por nodeJS online'
-    })
-}
-
 
 /** 
 * registra usuarios nuevos
@@ -329,8 +317,6 @@ async function getCountfollow(user_id){
 
 
 module.exports = {
-    home,
-    test,
     saveUser,
     login,
     getUser,
