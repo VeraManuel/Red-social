@@ -106,3 +106,33 @@
     height: auto;
     width: 150px;
 }
+
+.item-user .image-user{
+    width: 75px;
+    height: 75px;
+    border-radius: 100px;
+    margin-right: 15px;
+    overflow: hidden;
+}
+
+.item-user .image-user img{
+    width: 120px;
+}
+
+.item-user .user-name{
+    margin-top: 5px;
+}
+
+.item-user .user-name p{
+    color: #929090;
+}
+
+.item-user .user-name .nick{
+    font-weight: bold;
+    color: #555;
+}
+
+.avatar-default{
+    width: 100% !important;
+}
+

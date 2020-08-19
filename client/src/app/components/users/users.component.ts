@@ -12,6 +12,7 @@ import { GLOBAL } from '../../services/global';
 })
 export class UsersComponent implements OnInit {
   public title: string;
+  public url: string;
   public identity;
   public token;
   public page;
@@ -21,6 +22,7 @@ export class UsersComponent implements OnInit {
   public pages;
   public users: User[];
   public status: string;
+  
 
   constructor(
     private _router: Router,
@@ -29,7 +31,8 @@ export class UsersComponent implements OnInit {
   ) {
     this.title = "Gente",
     this.identity = this._userService.getIdentity(),
-    this.token = this._userService.getToken()
+    this.token = this._userService.getToken(),
+    this.url = GLOBAL.url
    }
 
   ngOnInit(): void {
@@ -41,8 +44,11 @@ export class UsersComponent implements OnInit {
       let page = +params['page'];
       this.page = page;
 
+      if(!params['page']){
+        page = 1;
+      }
       if(!page){
-        this.page = 1;
+        page = 1;
       }else{
         this.next_page = page+1;
         this.prev_page = page-1;
@@ -72,7 +78,6 @@ export class UsersComponent implements OnInit {
             this._router.navigate(['/gente',1]);
           }
         }
-        
       },
       error =>{
         var errorMessage = <any>error;

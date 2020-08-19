@@ -2,4 +2,38 @@
     <h1 class="h1-strong">
         {{title}}
     </h1>
+
+    <div class="people">
+        <!-- User List -->
+        <div *ngFor="let user of users" class='item-user'>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="image-user pull-left">
+                        <a href="#">
+                            <img src="{{ url + 'get-image-user/' + user.image }}" alt="user_image" *ngIf='user.image'/>
+                            <img src="assets/user.png" class="avatar-default" alt="default_user" *ngIf='!user.image' />
+                        </a>
+                    </div>
+
+                    <div class="user-name pull-left">
+                        <h4 class="nick">
+                            <a href="#">
+                                {{user.nickname}}
+                            </a>
+                        </h4>
+                        <p>
+                            {{user.name + " " + user.lastname}}
+                        </p>
+                    </div>
+
+                    <!-- Follow/unfollow btn-->
+                </div>
+            </div>
+        </div>
+        <!-- Pagination -->
+        <ul class="pagination pull-right">
+            <li *ngIf='page > 1'><a [routerLink]="['/gente', prev_page]">Anterior</a></li>
+            <li *ngIf='pages != page'><a [routerLink]="['/gente', next_page]">Siguiente</a></li> 
+        </ul>
+    </div>
 </div>
