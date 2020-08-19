@@ -33,7 +33,7 @@
 .btn-warning {
     background-color: #f39c12;
     border-color: #f39c12;
-}s
+}
 
 .pointer {
     cursor: pointer;
@@ -134,5 +134,9 @@
 
 .avatar-default{
     width: 100% !important;
+}
+
+.people .pull-right button{
+    margin-top: 20px;
 }
 
