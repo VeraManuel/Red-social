@@ -69,10 +69,10 @@ function login (req, res) {
     var email = params.email;
     var password = params.password;
 
-    User.findOne({ email: email },(err, user) => {
-        if (err) return res.status(500).send({message: "Error en la peticion"});
+    User.findOne({email: email}, (err, user) => {
+        if(err) return res.status(500).send({message: "Error en la peticion"});
 
-        if (user) {
+        if(user) {
             bcrypt.compare(password , user.password, (err, check) => {
                 if (check){
 
@@ -210,14 +210,27 @@ function updateUser(req, res) {
         return res.status(500).send({message: 'No tienes permisos para actualizar este usuario'});
     }
 
-    User.findByIdAndUpdate(userId, update, {new:true}, (err, userUpdate) => {
-        if(err) return res.status(500).send({message: 'Error en la peticion'});
+    User.find({ $or:[
+        {email: update.email.toLowerCase()},
+        {nickname: update.nickname.toLowerCase()}
+    ]}).exec((err, users)=> {
 
-        if(!userUpdate) return res.status(404).send({message: 'No se ha podido actualizar el usuario'});
+        var user_isset = false;
+        users.forEach((user) => {
+            if(user && user._id != userId) user_isset = true;
+        });
 
-        return res.status(200).send({userUpdate});
+        if(user_isset) return res.status(404).send({message: 'Los datos ya estan en uso'});
+        
+        User.findByIdAndUpdate(userId, update, {new:true}, (err, userUpdate) => {
+            if(err) return res.status(500).send({message: 'Error en la peticion'});
+    
+            if(!userUpdate) return res.status(404).send({message: 'No se ha podido actualizar el usuario'});
+    
+            return res.status(200).send({userUpdate});
+        });
     });
-}
+} 
 
 function uploadImage(req, res) {
     var userId = req.params.id;
@@ -252,7 +265,7 @@ function uploadImage(req, res) {
 
 function getImageFile(req, res) {
     var image_file = req.params.imageFile;
-    var path_file = './uploads/user/'+image_file;
+    var path_file = './uploads/users/'+image_file;
 
     fs.exists(path_file, (exists)=>{
         if(exists){

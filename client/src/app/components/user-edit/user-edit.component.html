@@ -1,0 +1,58 @@
+<div class="col-lg-6">
+    <h1 class="h1-strong">{{title}}</h1>
+
+    <div class="alert alert-success" *ngIf="status == 'success'">
+        Los datos se han actualizado correctamente!!
+    </div>
+
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+        No se han podido actualizar los datos!!
+    </div>
+
+    <form #userEditForm="ngForm" (ngSubmit)="onSubmit()" class="col-lg-12">
+        <p>
+            <label for="name">Nombre</label>
+            <input type="text" name="name" #name [(ngModel)]="user.name" class="form-control" required />
+            <span *ngIf="!name.valid && name.touched">
+                El Nombre es obligratorio.
+            </span>
+        </p>
+        
+        <p>
+            <label for="lastname">Apellido</label>
+            <input type="text" name="lastname" #lastname [(ngModel)]="user.lastname" class="form-control" required />
+            <span *ngIf="!lastname.valid && lastname.touched">
+                Los Apellidos son obligratorios.
+            </span>
+        </p>
+
+        <p>
+            <label for="nickname">Nickname</label>
+            <input type="text" name="nickname" #nickname [(ngModel)]="user.nickname" class="form-control" required />
+            <span *ngIf="!nickname.valid && nickname.touched">
+                El Nickname es obligratorio.
+            </span>
+        </p>
+
+        <p>
+            <label for="email">Email</label>
+            <input type="text" name="email" #email [(ngModel)]="user.email" class="form-control" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
+            <span *ngIf="!email.valid && email.touched">
+                El Email es obligratorio.
+            </span>
+        </p>
+
+        <div class="show-avatar" *ngIf="user.image">
+            <img src="{{url + 'get-image-user/' + user.image}}" />
+        </div>
+
+        <p>
+            <label for="image">Subir Avatar</label>
+            <input type="file" placeholder="Subir Imagen" (change)="fileChangeEvent($event)" />
+        </p>
+
+        <input type="submit" value="{{title}}" class="btn btn-warning" [disabled]="!userEditForm.form.valid">
+
+    </form>
+
+</div>

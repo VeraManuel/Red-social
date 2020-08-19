@@ -8,9 +8,10 @@
         </a>
       </div>
 
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav" *ngIf="identity">
+
         <li>
-          <a href="#">
+          <a [routerLink]="['/home']" [routerLinkActive]="['active']">
             <span class="glyphicon glyphicon-home"></span>
             Inicio
           </a>
@@ -24,13 +25,62 @@
         </li>
 
         <li>
-          <a href="#">
+          <a [routerLink]="['/gente']" [routerLinkActive]="['active']">
             <span class="glyphicon glyphicon-user"></span>
             Usuarios
           </a>
         </li>
 
+      </ul>
 
+      <ul class="nav navbar navbar-nav navbar-right" *ngIf="!identity">
+
+        <li>
+          <a [routerLink]="['/login']" [routerLinkActive]="['active']">
+            <span class="glyphicon glyphicon-log-in"></span>
+            Login
+          </a>
+        </li>
+
+        <li>
+          <a [routerLink]="['/registro']" [routerLinkActive]="['active']">
+            <span class="glyphicon glyphicon-user"></span>
+            Registro
+          </a>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right" *ngIf="identity">
+        <li class="avatar">
+          <img src="{{ url + 'get-image-user/' + identity.image}}" *ngIf='identity && identity.image' />
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            {{identity.name}} <span class="caret"></span>
+          </a> 
+
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#">
+                <span class="glyphicon glyphicon-user"></span>
+                Mi Perfil
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/mis-datos']">
+                <span class="glyphicon glyphicon-cog"></span>
+                Mis Datos
+              </a>
+            </li>
+            <li>
+              <a class="pointer" (click)="logout()">
+                <span class="glyphicon glyphicon-log-out"></span>
+                Cerrar Sesion
+              </a>
+            </li>
+          </ul>
+
+        </li>
       </ul>
 
     </div>
