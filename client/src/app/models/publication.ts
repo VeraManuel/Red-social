@@ -3,7 +3,7 @@ export class Publication{
         public _id: string,
         public text: string,
         public file: string,
-        public crated_at: number,
+        public crated_at: string,
         public user: string
     ){}
 }

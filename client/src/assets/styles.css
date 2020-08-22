@@ -8,6 +8,19 @@
     border-bottom: 1px solid #eee;
 }
 
+.h2-strong {
+    font-size: 35px;
+    font-weight: bold;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.clearfix{
+    float: none;
+    clear: both;
+}
+
 .active{ 
     background: #18bc9c;
 }
@@ -19,9 +32,9 @@
 }
 
 .btn-primary {
-    color: #fff !important;
-    background-color: #2c3e50 !important;
-    border-color: #2c3e50 !important;
+    color: #fff;
+    background-color: #2c3e50;
+    border-color: #2c3e50 ;
 }
 
 .btn-info {
@@ -107,7 +120,10 @@
     width: 150px;
 }
 
-.item-user .image-user{
+/*Gente*/
+
+.item-user .image-user,
+.item-publication .image-user{
     width: 75px;
     height: 75px;
     border-radius: 100px;
@@ -115,11 +131,13 @@
     overflow: hidden;
 }
 
-.item-user .image-user img{
+.item-user .image-user img,
+.item-publication .image-user img{
     width: 120px;
 }
 
-.item-user .user-name{
+.item-user .user-name,
+.item-publication .nickname{
     margin-top: 5px;
 }
 
@@ -127,9 +145,11 @@
     color: #929090;
 }
 
-.item-user .user-name .nick{
+.item-user .user-name .nick a{
     font-weight: bold;
     color: #555;
+    text-decoration: none;
+    
 }
 
 .avatar-default{
@@ -140,3 +160,108 @@
     margin-top: 20px;
 }
 
+/*Sidebar*/
+.sidebar-32{
+ width: 32% !important;
+ padding: 0px !important;
+}
+
+#user-card, #new-publication{
+    padding:25px;
+    width: 32%;
+}
+
+#new-publication{
+    padding-top:20px;
+    padding-left: 7px;
+    padding-bottom: 15px;
+}
+
+#user-card .avatar{
+    width: 75px;
+    height: 75px;
+    border-radius: 100px;
+    margin-right: 15px;
+    overflow: hidden;
+}
+
+#user-card .avatar img{
+    width: 110%;
+}
+
+#user-card .nickname{
+    font-weight: 300;
+    font-size:17px;
+}
+
+#user-card .nickname a{
+    color: #555;
+}
+
+#user-card .nickname .name-lastname{
+    color: #929090;
+}
+
+#user-card .label-stats,
+#user-card .number-stats{
+    display: block;
+    text-align: center;
+    transition: 300ms;
+}
+
+#user-card .stats{
+    border-top: 1px solid #eee;
+    margin-top: 10px;
+}
+
+#user-card .stats a:hover{
+    text-decoration: none;
+}
+
+
+#user-card .label-stats{
+    font-weight: bold;
+    color: #555;
+}
+
+#user-card .number-stats{
+    font-weight: bold;
+    color: #18bc9c;
+}
+
+#user-card .following-data{
+    float: left;
+    padding-right: 18px;
+    margin-top: 10px;
+    padding-left: 18px;
+    border-right: 2px solid #eee;
+}
+
+#user-card .following-data:first-child{
+    padding-left: 6px;
+}
+
+#user-card .following-data:last-child{
+    border: none;
+}
+
+#new-publication textarea{
+    margin: 0px -86.6094px 0px 0px;
+    width: 387px;
+    height: 135px;
+}
+
+/*TIMELINE*/
+
+#publications{
+    min-height: 500px;
+}
+
+#publications .date{
+    color: gray;
+}
+
+.btn-group-sm>.btn, .btn-sm {
+    margin-top: 23px;
+    margin-right: 15px;
+}
