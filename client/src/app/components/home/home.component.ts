@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'home',
@@ -7,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   public title:string;
-  constructor() {
+  public identity;
+  constructor(private _userService: UserService) {
     this.title = "Bienvenidos a GmSocial";
+    this.identity = this._userService.getIdentity();
    }
 
   ngOnInit(): void {

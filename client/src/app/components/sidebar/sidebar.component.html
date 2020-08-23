@@ -9,7 +9,7 @@
     </div>
     
     <div class="nickname pull-left">
-        <a href="#" class="usernick">
+        <a [routerLink]="['/perfil', identity._id]" class="usernick">
             {{identity.nickname}}
         </a>
         <p class="name-lastname">
@@ -67,7 +67,7 @@
         Publicacion no enviada!!!
     </div>
     
-    <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm); sendPublication($event)" class="col-lg-10 ">
+    <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm, $event)" class="col-lg-10 ">
         <p>
             <label for="text">En que estas pensando?</label>
             <textarea name="text" #text="ngModel" [(ngModel)]="publication.text" class="form-control" maxlength="280" 
@@ -79,7 +79,7 @@
 
         <p>
             <label for='image'>Subir imagen</label>
-            <input type="file" placeholder="Subir imagen" />
+            <input type="file" placeholder="Subir imagen" (change)="fileChangeEvent($event)" />
         </p>
 
         <input type="submit" value="Publicar" class="btn btn-success" [disabled]="!newPubForm.valid" />
