@@ -56,12 +56,51 @@ function getFollowingUsers(req, res){
 
         if(!follows) return res.status(404).send({message: 'No estas siguiendo a ningun usuario'});
 
-        return res.status(200).send({
-           total: total,
-           pages: Math.ceil(total/itemsPerPage),
-           follows 
+        followUserIds(req.user.sub).then((value)=>{
+            return res.status(200).send({
+            total: total,
+            pages: Math.ceil(total/itemsPerPage),
+            follows,
+            users_following: value.following,
+            users_followed: value.followed,
+            });
         });
     });
+}
+
+async function followUserIds(user_id){
+     
+    var following = await Follow.find({'user':user_id}).select({'_id':0,'__v':0,'user':0}).exec()
+        .then((follows) => {
+            return follows;
+        })
+        .catch((err) => {
+            return handleError(err);
+        });
+    var followed = await Follow.find({'followed':user_id}).select({'_id':0,'__v':0,'followed':0}).exec()
+        .then((follows) => {
+            return follows;
+        })
+        .catch((err) => {
+            return handleError(err);
+        });
+     
+    var following_clean = [];
+     
+    following.forEach((follow)=>{
+        following_clean.push(follow.followed);
+    });
+
+    var followed_clean = [];
+     
+    followed.forEach((follow)=>{
+        followed_clean.push(follow.user);
+    });
+    
+    return {
+        following: following_clean,
+        followed:followed_clean
+    }
 }
 
 //usuarios que nos siguen paginados
@@ -87,10 +126,14 @@ function getFollowedUsers(req, res) {
 
         if(!follows) return res.status(404).send({message: 'No te esta siguiendo ningun usuario'});
 
-        return res.status(200).send({
+        followUserIds(req.user.sub).then((value)=>{
+            return res.status(200).send({
             total: total,
-            page: Math.ceil(total/itemsPerPage),
-            follows
+            pages: Math.ceil(total/itemsPerPage),
+            follows,
+            users_following: value.following,
+            users_followed: value.followed,
+            });
         });
     });
 }

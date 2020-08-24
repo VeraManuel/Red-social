@@ -77,7 +77,7 @@ export class PublicationsComponent implements OnInit {
     );
   }
 
-  public noMore =false;
+  public noMore = false;
   viewMore(){
     this.page += 1;
 
