@@ -46,6 +46,7 @@ export class PublicationsComponent implements OnInit {
     this._publicationService.getPublicationsUser(this.token, user, page).subscribe(
       response => {
         if(response.publications){
+
           this.total = response.total_items;
           this.pages = response.pages;
           this.itemsPerPage = response.items_per_page;
@@ -86,6 +87,11 @@ export class PublicationsComponent implements OnInit {
     }
 
     this.getPublications(this.user, this.page, true);
+  }
+
+  showViewMore(){
+    
+    return this.publications && this.publications.length > 0;
   }
 
 

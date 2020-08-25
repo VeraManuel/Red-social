@@ -81,7 +81,7 @@ function getPublicationsUser(req,res) {
     var itemsPerPage = 4;
     
 
-        Publication.find({user: user}).sort('-created_at').populate('user').paginate(page, itemsPerPage, (err, publications,total) =>{
+        Publication.find({user: user}).sort('-created_at').populate('user').paginate(page, itemsPerPage, (err, publications, total) =>{
             if(err) return res.status(500).send({message: 'Error al obtener las publicaciones'});
 
             if(!publications) return res.status(404).send({message: 'No sigues a ningun usuario'});

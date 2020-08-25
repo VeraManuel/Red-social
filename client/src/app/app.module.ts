@@ -5,6 +5,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { routing, appRoutingProviders } from '../app.routing';
 import { MomentModule } from 'angular2-moment';
 
+//Custom module
+
+import { MessageModule } from './messages/messages.module';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -38,7 +42,8 @@ import { FollowedComponent } from './components/followed/followed.component';
     routing,
     FormsModule,
     HttpClientModule,
-    MomentModule
+    MomentModule,
+    MessageModule
   ],
   providers: [
     appRoutingProviders

@@ -36,6 +36,7 @@ export class SidebarComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.loadPage();
   }
 
   onSubmit(form, $event){
@@ -83,6 +84,26 @@ export class SidebarComponent implements OnInit {
   @Output() sended = new EventEmitter();
   sendPublication(event){
     this.sended.emit({send: 'true'});
+  }
+
+  loadPage(){
+    this._route.params.subscribe(params => {
+
+      this.getCounters(this.identity.id);
+    });
+  }
+
+
+  getCounters(id){
+    this._userService.getCounters(id).subscribe(
+      response => {
+        this.stats = response;
+
+      },
+      error => {
+        console.log(<any>error);
+      }
+    );
   }
 
 }

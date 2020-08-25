@@ -311,7 +311,7 @@ async function getCountfollow(user_id){
             return handleError(err);
         });
     
-        var publications = await Publication.countDocuments({'user':user_id}).exec()
+    var publications = await Publication.countDocuments({'user':user_id}).exec()
         .then((count) => {
             return count;
         })
