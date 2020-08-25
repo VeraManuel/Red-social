@@ -332,3 +332,16 @@
 }
 
 /*Mensajes*/
+#messages  .user-name .nick{
+    font-weight: bold;
+    color: #555;
+}
+
+#messages .user-name .name{
+    font-weight: normal;
+    color: gray;
+}
+
+#messages .user-name .date{
+    color: gray;
+}

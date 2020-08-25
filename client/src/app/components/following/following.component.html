@@ -9,7 +9,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="image-user pull-left">
-                        <a href="#">
+                        <a [routerLink]="['/perfil', follow.followed._id]">
                             <img src="{{ url + 'get-image-user/' + follow.followed.image }}" alt="following_image" *ngIf='follow.followed.image'/>
                             <img src="assets/user.png" class="avatar-default" alt="default_user" *ngIf='!follow.followed.image' />
                         </a>

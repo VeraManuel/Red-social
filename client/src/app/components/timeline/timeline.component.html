@@ -10,7 +10,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="image-user pull-left">
-                        <a href="#">
+                        <a [routerLink]="['/perfil', publication.user._id]">
                             <img src="{{ url + 'get-image-user/' + publication.user.image }}" alt="publication_user_image" *ngIf='publication.user.image'/>
                             <img src="assets/user.png" class="avatar-default" alt="default_user" *ngIf='!publication.user.image' />
                         </a>

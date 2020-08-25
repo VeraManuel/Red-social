@@ -37,34 +37,35 @@ function getReceiverMesssages(req, res) {
 
     var itemsPerPage = 4;
 
-    Message.find({receiver: userId}).populate('emitter', 'name lastname image nickname _id').paginate(page, itemsPerPage, (err, messages, total) => {
+    Message.find({receiver: userId}).sort('-created_at').populate('emitter', 'name lastname image nickname _id').paginate(page, itemsPerPage, (err, messages, total) => {
         if(err) return res.status(500).send({message: 'Error en la peticion'});
         if(!messages) return res.status(404).send({message: 'No hay mensajes que mostrar'});
 
         return res.status(200).send({
            total: total,
-           page: Math.ceil(total/itemsPerPage),
+           pages: Math.ceil(total/itemsPerPage),
            messages 
         });
     });
 }
 
-function getEmmiteMessages(req, res) {
+function getEmitterMessages(req, res) {
     var userId = req.user.sub;
     var page = 1;
+
     if(req.params.page) {
         page = req.params.page;
     }
 
     var itemsPerPage = 4;
 
-    Message.find({emitter: userId}).populate('emitter receiver', 'name lastname image nickname _id').paginate(page, itemsPerPage, (err, messages, total) => {
+    Message.find({emitter: userId}).sort('-created_at').populate('emitter receiver', 'name lastname image nickname _id').paginate(page, itemsPerPage, (err, messages, total) => {
         if(err) return res.status(500).send({messages: 'Error en la peticion'});
         if(!messages) return res.status(404).send({messages: 'No hay mensajes que mostrar'});
 
         return res.status(200).send({
             total: total,
-            page: Math.ceil(total/itemsPerPage),
+            pages: Math.ceil(total/itemsPerPage),
             messages
         });
     });
@@ -97,7 +98,7 @@ function setViewedMessages(req, res) {
 module.exports = {
     saveMessage,
     getReceiverMesssages,
-    getEmmiteMessages,
+    getEmitterMessages,
     getUnviewedMessages,
     setViewedMessages
 };
